@@ -28,7 +28,7 @@ void main() {
         find.byWidgetPredicate((widget) =>
             widget is AppBar &&
             widget.title is Text &&
-            (widget.title as Text).data.startsWith("ToDoApp")),
+            (widget.title as Text).data!.startsWith("ToDoApp")),
         findsOneWidget);
 
     await tester.pumpAndSettle(Duration(seconds: 1));

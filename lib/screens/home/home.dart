@@ -28,15 +28,16 @@ class _HomeState extends State<Home> {
       ),
       body: StreamProvider<List<TaskModel>>.value(
         value: DatabaseService().getListOfTask,
+        initialData: [],
         child: Scaffold(
           backgroundColor: Colors.brown[50],
-                          appBar: AppBar(
-                            title: Text(
-                              'ToDoApp',
-                              key: Key("toDoKey"),
-                            ),
-                            backgroundColor: Colors.brown[400],
-                          ),
+          appBar: AppBar(
+            title: Text(
+              'ToDoApp',
+              key: Key("toDoKey"),
+            ),
+            backgroundColor: Colors.brown[400],
+          ),
           body: Container(child: _TaskList()),
         ),
       ),
