@@ -1,6 +1,6 @@
-import 'package:firebase_practice/res/shared/constants.dart';
-import 'package:firebase_practice/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:integration_demo/res/shared/constants.dart';
+import 'package:integration_demo/services/database.dart';
 
 class AddTask extends StatelessWidget {
   var controller = TextEditingController();

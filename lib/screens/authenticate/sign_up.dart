@@ -1,7 +1,7 @@
-import 'package:firebase_practice/res/shared/constants.dart';
-import 'package:firebase_practice/res/shared/loading.dart';
-import 'package:firebase_practice/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:integration_demo/res/shared/constants.dart';
+import 'package:integration_demo/res/shared/loading.dart';
+import 'package:integration_demo/services/auth.dart';
 
 class Signup extends StatefulWidget {
   final Function toggleView;

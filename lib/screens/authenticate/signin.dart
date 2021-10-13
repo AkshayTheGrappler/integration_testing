@@ -1,9 +1,9 @@
-import 'package:firebase_practice/res/shared/constants.dart';
-import 'package:firebase_practice/res/shared/loading.dart';
-import 'package:firebase_practice/screens/authenticate/sign_up.dart';
-import 'package:firebase_practice/screens/home/home.dart';
-import 'package:firebase_practice/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:integration_demo/res/shared/constants.dart';
+import 'package:integration_demo/res/shared/loading.dart';
+import 'package:integration_demo/screens/authenticate/sign_up.dart';
+import 'package:integration_demo/screens/home/home.dart';
+import 'package:integration_demo/services/auth.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;

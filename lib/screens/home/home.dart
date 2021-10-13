@@ -1,7 +1,7 @@
-import 'package:firebase_practice/res/models/taskmodel.dart';
-import 'package:firebase_practice/screens/home/add_task.dart';
-import 'package:firebase_practice/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:integration_demo/res/models/taskmodel.dart';
+import 'package:integration_demo/screens/home/add_task.dart';
+import 'package:integration_demo/services/database.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

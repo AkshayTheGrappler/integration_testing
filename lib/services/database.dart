@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_practice/res/models/taskmodel.dart';
-import 'package:firebase_practice/res/utility/preferences.dart';
+import 'package:integration_demo/res/models/taskmodel.dart';
+import 'package:integration_demo/res/utility/preferences.dart';
 
 class DatabaseService {
   final CollectionReference todoCollection =
