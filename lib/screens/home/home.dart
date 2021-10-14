@@ -58,7 +58,7 @@ class _TaskList extends StatefulWidget {
 class __TaskListState extends State<_TaskList> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<List<TaskModel>>(context) ?? [];
+    final provider = Provider.of<List<TaskModel>>(context);
     return ListView.builder(
       itemCount: provider.length,
       itemBuilder: (context, index) {
