@@ -5,9 +5,25 @@ on:
     branches:
       - 'release*'
 
+
 jobs:
+  ndk_setup:
+    name: Android NDK setup
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r21e
+          add-to-path: false
+      - run: ./build.sh
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
   build_apk:
     name: Build Android app
+    needs: [ndk_setup]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -20,8 +36,6 @@ jobs:
           java-version: 1.8
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
-      - name : Setup Android NDK
-        uses:  actions/checkout@v2
       - name: Generate APK
         run: flutter build apk --debug
       - name: Upload APK
