@@ -7,23 +7,23 @@ on:
 
 
 jobs:
-  ndk_setup:
-    name: Android NDK setup
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: nttld/setup-ndk@v1
-        id: setup-ndk
-        with:
-          ndk-version: r21e
-          add-to-path: false
-      - run: ./build.sh
-        env:
-          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+#  ndk_setup:
+#    name: Android NDK setup
+#    runs-on: ubuntu-18.04
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: nttld/setup-ndk@v1
+#        id: setup-ndk
+#        with:
+#          ndk-version: r21e
+#          add-to-path: false
+#      - run: ./build.sh
+#        env:
+#          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
   build_apk:
     name: Build Android app
-    needs: [ndk_setup]
+    #needs: [ndk_setup]
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -36,6 +36,13 @@ jobs:
           java-version: 1.8
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
+      - name: Cache (NDK)
+        uses: actions/cache@v2
+        with:
+          path: ${ANDROID_HOME}/ndk/21.0.6113669
+          key: ndk-cache
+      - name: Install NDK
+        run: echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install 'ndk;21.0.6113669'
       - name: Generate APK
         run: flutter build apk --debug
       - name: Upload APK
