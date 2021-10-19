@@ -36,6 +36,7 @@ jobs:
       - run: flutter pub get
 
   build_apk:
+    name: Build Android app
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
     steps:
@@ -83,18 +84,22 @@ jobs:
 
   build_ipa:
      name: Build iOS app
-     needs: [environment]
+#     needs: [environment]
      runs-on: macos-latest
      steps:
-       - name: Building IPA
-         run:
-           flutter build ios --release --no-codesign
+       # Setup the flutter environment.
+       - uses: subosito/flutter-action@v1
+        with:
+            #channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+            flutter-version: '2.2.1'
+       - run:
+          # find . -name "Podfile" -execdir pod install
+           flutter build ipa --release --no-codesign
 #           xcode-project build-ipa --workspace ios/Runner.xcworkspace --scheme Runner --config Release
-       - name: Upload ipa
-         uses: actions/upload-artifact@v1
-         with:
-           name: ios-ipa
-           path: build/ios/ipa/flutter_app.ipa
+      uses: actions/upload-artifact@v1
+      with:
+        name: ios-ipa
+        path: build/ios/ipa/flutter_app.ipa
 
 #  test:
 #    name: Unit Tests
