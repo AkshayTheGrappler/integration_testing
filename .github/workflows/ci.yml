@@ -53,19 +53,18 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
-#  ndk_setup:
-#    name: Android NDK setup
-#    runs-on: ubuntu-18.04
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: nttld/setup-ndk@v1
-#        id: setup-ndk
-#        with:
-#          ndk-version: r21e
-#          add-to-path: false
-#      - run: ./build.sh
-#        env:
-#          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+
+      #Build iOS App
+      run: |
+        xcode-project use-profiles
+        flutter build ios --release --no-codesign
+        xcode-project build-ipa --workspace ios/Runner.xcworkspace --scheme Runner --config Release
+
+      #Upload generated ipa to the artifacts.
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ios-ipa
+          path: build/ios/ipa/flutter_app.ipa
 
 #  build_apk:
 #    name: Build Android app
