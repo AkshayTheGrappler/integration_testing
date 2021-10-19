@@ -84,14 +84,17 @@ jobs:
 
   build_ipa:
      name: Build iOS app
-#     needs: [environment]
+      #     needs: [environment]
      runs-on: macos-latest
      steps:
        # Setup the flutter environment.
        - uses: subosito/flutter-action@v1
-        with:
-            #channel: 'stable' # 'dev', 'alpha', default to: 'stable'
-            flutter-version: '2.2.1'
+         with:
+           flutter-versoion: '2.2.1'
+
+      # Get flutter dependencies.
+       - run: flutter pub get
+
        - run:
           # find . -name "Podfile" -execdir pod install
            flutter build ipa --release --no-codesign
