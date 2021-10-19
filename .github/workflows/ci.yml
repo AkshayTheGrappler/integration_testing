@@ -54,7 +54,7 @@ jobs:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
 
-      #Build iOS App
+      # Build iOS App
       run: |
         xcode-project use-profiles
         flutter build ios --release --no-codesign
