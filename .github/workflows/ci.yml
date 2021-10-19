@@ -87,6 +87,7 @@ jobs:
       #     needs: [environment]
      runs-on: macos-latest
      steps:
+
        # Setup the flutter environment.
        - uses: subosito/flutter-action@v1
          with:
@@ -96,13 +97,15 @@ jobs:
        - run: flutter pub get
 
        - run:
-          # find . -name "Podfile" -execdir pod install
            flutter build ipa --release --no-codesign
-#           xcode-project build-ipa --workspace ios/Runner.xcworkspace --scheme Runner --config Release
-      uses: actions/upload-artifact@v1
-      with:
-        name: ios-ipa
-        path: build/ios/ipa/flutter_app.ipa
+
+       - uses: actions/upload-artifact@v1
+        with:
+          name: ios-ipa
+          path: build/ios/ipa/flutter_app.ipa
+
+
+
 
 #  test:
 #    name: Unit Tests
