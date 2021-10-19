@@ -87,10 +87,9 @@ jobs:
      runs-on: macos-latest
      steps:
        - name: Building IPA
-         run: |
-           xcode-project use-profiles
+         run:
            flutter build ios --release --no-codesign
-           xcode-project build-ipa --workspace ios/Runner.xcworkspace --scheme Runner --config Release
+#           xcode-project build-ipa --workspace ios/Runner.xcworkspace --scheme Runner --config Release
        - name: Upload ipa
          uses: actions/upload-artifact@v1
          with:
