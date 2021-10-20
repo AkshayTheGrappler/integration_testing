@@ -76,15 +76,15 @@ jobs:
 
 # Run integration tests for our flutter project
       - run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/foo_test.dart
-
-      # Build apk.
-      - run: flutter build apk
-
-      # Upload generated apk to the artifacts.
-      - uses: actions/upload-artifact@v1
-        with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+#
+#      # Build apk.
+#      - run: flutter build apk
+#
+#      # Upload generated apk to the artifacts.
+#      - uses: actions/upload-artifact@v1
+#        with:
+#          name: release-apk
+#          path: build/app/outputs/apk/release/app-release.apk
 
 
 #  build_ipa:
