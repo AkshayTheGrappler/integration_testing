@@ -10,13 +10,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_demo/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('main screen smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);
+    expect(find.text('go to demo screen'), findsOneWidget);
 
     // Tap the '+' icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.add));

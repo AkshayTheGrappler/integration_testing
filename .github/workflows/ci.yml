@@ -67,14 +67,15 @@ jobs:
 
 #       Check for any formatting issues in the code.
 #      - run: flutter format --set-exit-if-changed .
-#
+
 #       Statically analyze the Dart code for any errors.
       - run: flutter analyze
-
 
 #       Run widget tests for our flutter project.
       - run: flutter test
 
+# Run integration tests for our flutter project
+      - run: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/foo_test.dart
 
       # Build apk.
       - run: flutter build apk

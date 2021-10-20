@@ -10,14 +10,15 @@ class Demo extends StatelessWidget {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('Demo'),
+        title: Text('Demo screen'),
       ),
       body: Center(
         child: Column(
           children: [
-            Text('demo'),
+            Text('demo screen'),
             GestureDetector(
-              child: Text('main'),
+              key: Key('GoToMain'),
+              child: Text('back to main screen'),
               onTap: () {
                 Navigator.push(
                   context,

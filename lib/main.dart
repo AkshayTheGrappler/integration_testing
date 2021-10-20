@@ -147,7 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             GestureDetector(
-              child: Text('demo'),
+              key: Key('GoToDemo'),
+              child: Text('go to demo screen'),
               onTap: () {
                 Navigator.push(
                   context,
