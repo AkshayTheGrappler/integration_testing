@@ -107,10 +107,9 @@ jobs:
       # Get flutter dependencies.
       - run: flutter pub get
 
-      - run:
-          flutter build ios --release --no-codesign
+      - run: flutter build ios --release --no-codesign
 
-      -uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v1
         with:
           name: ios-ipa
           path: build/ios/ipa/flutter_app.ipa
