@@ -8,28 +8,60 @@ on:
 
 jobs:
 
-  drive_android:
-    runs-on: macos-latest
+  drive_ios:
+    #Create a construction matrix
     strategy:
+      #Set up different configurations for a set of virtual environments
       matrix:
-        api-level: [ 21, 29 ]
-        target: [ default ]
+        device:
+          - "iPhone 8 (14.4)"
+          - "iPhone 11 Pro Max (14.4)"
+      #When set to true, GitHub cancels all in progress jobs if any of the matrix jobs fail.
+      fail-fast: false
+    runs-on: macos-latest
     steps:
+      - name: "List all simulators"
+        run: "xcrun instruments -s"
+      - name: "Start Simulator"
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=${{ matrix.device }}' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.1'
+          Flitter version: '2.2.1'
           channel: 'stable'
       - name: "Run Flutter Driver tests"
-        #Operation for installing, configuring and running Android emulator (MAC OS only)
-        # https://github.com/marketplace/actions/android-emulator-runner
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: ${{ matrix.target }}
-          arch: x86_64
-          profile: Nexus 6
-          script: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/foo_test.dart"
+        run: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/foo_test.dart"
+
+#  drive_android:
+#    runs-on: macos-latest
+#    strategy:
+#      matrix:
+#        api-level: [ 21, 29 ]
+#        target: [ default ]
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: subosito/flutter-action@v1
+#        with:
+#          flutter-version: '2.2.1'
+#          channel: 'stable'
+#      - name: "Run Flutter Driver tests"
+#        #Operation for installing, configuring and running Android emulator (MAC OS only)
+#        # https://github.com/marketplace/actions/android-emulator-runner
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: ${{ matrix.api-level }}
+#          target: ${{ matrix.target }}
+#          arch: x86_64
+#          profile: Nexus 6
+#          script: "flutter drive --driver=test_driver/integration_test.dart --target=integration_test/foo_test.dart"
 
 #  environment:
 #    runs-on: ubuntu-latest
